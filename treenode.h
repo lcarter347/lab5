@@ -37,13 +37,19 @@ TreeNode<T>::TreeNode(T val, TreeNode *ln, TreeNode *rn){
     right = rn;
 }
 
+template <>
+TreeNode<Datawrapper *>::TreeNode(Datawrapper * val){
+    data = val;
+    left = right = NULL;
+}
+
 template <class T>
 T TreeNode<T>::getData(){
     return data;
 }
 
 template <>
-Double TreeNode<Datawrapper>::getData(){
+double TreeNode<Datawrapper>::getData(){
     return data.getWeight();
 }
 
@@ -78,10 +84,27 @@ bool TreeNode<T>::isLeaf(){
 }
 
 template <class T>
-   TreeNode* merge(TreeNode* a, TreeNode* b){
+   TreeNode<T>* TreeNode<T>::merge(TreeNode<T>* a, TreeNode<T>* b){
     T val1 = a->getData();
     T val2 = b->getData();
     TreeNode<T> parent();
+    (if val2 < val1){
+        parent.setLeft(b);
+        parent.setRight(a);
+    } else {
+        parent.setLeft(a);
+        parent.setRight(b);
+    }
+    parent.setData(val1 + val2);
+}
+
+template <>
+TreeNode<Datawrapper *>* TreeNode<Datawrapper *>::merge(TreeNode<Datawrapper *>* a, TreeNode<Datawrapper *>* b){
+    double val1 = a->getData();
+    double val2 = b->getData();
+    Datawrapper* d = new Datawrapper();
+    d->setWeight(val1 + val2);
+    TreeNode<Datawrapper *> parent(d);
     (if val2 < val1){
         parent.setLeft(b);
         parent.setRight(a);

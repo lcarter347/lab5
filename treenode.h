@@ -2,6 +2,7 @@
  Section 1*/
 
 #include <cstddef>
+#include "datawrapper.h"
 
 #ifndef TREENODE_H_
 #define TREENODE_H_

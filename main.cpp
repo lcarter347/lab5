@@ -23,6 +23,18 @@ int main(){
 	string val;
 	while(!myInputFile.eof()){
 		getline(cin, line);
+     f (command.length() > 2){
+254         for (int i = 0; i < command.length(); i++){
+ 255             if (isspace(command[i])){
+256                 space = i;
+257                 break;
+258             } else {
+    259                 space = -1;
+    260             }
+ 261         }
+   262         if (space == -1){
+       263             cout << "Incorrect command format" << endl;
+
 	
 		Datawrapper* a = new Datawrapper();
 		a->setCharac(value);

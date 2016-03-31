@@ -18,14 +18,14 @@ int main(){
 	if(!myInputFile.is_open()){
 		myInputFile.open(inputFileName.c_str());
 	}
-	char* value;
+	char* line;
 	string num;
+	string val;
 	while(!myInputFile.eof()){
-		cin.get(value);	
+		getline(cin, line);
+	
 		Datawrapper* a = new Datawrapper();
 		a->setCharac(value);
-		cin.get();
-		cin.get(num);
 		a->setWeight(stod(num));
 		TreeNode<Datawrapper*> * n = new TreeNode<Datawrapper*>();
 		n->setData(*a);

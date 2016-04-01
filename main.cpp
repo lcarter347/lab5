@@ -19,33 +19,36 @@ int main(){
 		myInputFile.open(inputFileName.c_str());
 	}
 	string line, charNum, charVal;
-	int space;
-	//make array
+	string space; 
+//make array
+
 	while(!myInputFile.eof()){
 		getline(cin, line);
 		if (line.length() > 2){
 			for (int i = 0; i < line.length(); i++){
 				if (isspace(line[i])){
-					space = i;
+					space.append(i);
+					cat(i);
 					break;
    				}
  			}
-			for(int i = 0; i < space; i++){
-				charVal = charVal + line[i];
+			if(space.length() == 1){
+				for(int i = 0; i < space[0]; i++){
+					charVal = charVal + line[i];
+				}
+				for(int i = space[0]; i < line.length(); i++){
+					charNum = charNum + line[i];
+				}
 			}
-			for(int i = space; i < line.length; i++){
-		
-			}
-		}		
-
-
+		}
 		Datawrapper* a = new Datawrapper();
-		a->setCharac(value);
-		a->setWeight(stod(num));
-		TreeNode<Datawrapper*> * n = new TreeNode<Datawrapper*>();
+		a->setCharac(charVal);
+		a->setWeight(stod(charNum));
+		TreeNode<Datawrapper*>* n = new TreeNode<Datawrapper*>();
 		n->setData(*a);
-
-
+		
+		TreeNode<Datawrapper*>* ptrArray = new TreeNode<Datawrapper*>()[];
+		
 
 
 //dynamic array of node pointers

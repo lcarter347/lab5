@@ -44,5 +44,11 @@ int main(){
     cout << "Length: " << myarray->get_size() << endl;
     TreeNode<Datawrapper *> * merged = n1->merge(n2);
     cout << "Merged weight: " << merged->getData()->getWeight() << endl;
+    TreeNode<Datawrapper *> * left = merged->getLeft();
+    TreeNode<Datawrapper *> * right= merged->getRight();
+    
+    cout << "Left weight: " << left->getData()->getWeight() << endl;
+    cout << "Right weight: " << right->getData()->getWeight() << endl;
+
 
 }

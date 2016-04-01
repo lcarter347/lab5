@@ -17,20 +17,23 @@ class Datawrapper{
         string getCharac();
         void setWeight(double);
         void setCharac(string);
-        bool operator< (const Datawrapper dw2);
-        bool operator> (const Datawrapper dw2);
-/*
+
+        bool operator< (const Datawrapper &dw2);
+        bool operator> (const Datawrapper &dw2);
+
+        
+        /*
         friend bool operator<(const Datawrapper &dw2) const;
         friend bool operator>(const Datawrapper &dw2) const;*/
 };
 
 
-bool Datawrapper::operator< (const Datawrapper dw2){
+bool Datawrapper::operator< (const Datawrapper &dw2){
     cout << "Made it into less than." << endl;
     return weight < dw2.weight;
 }
 
-bool Datawrapper::operator> (const Datawrapper dw2){
+bool Datawrapper::operator> (const Datawrapper &dw2){
     cout << "Made it into greater than." << endl;
     return weight > dw2.weight;
 }

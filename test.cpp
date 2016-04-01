@@ -19,7 +19,6 @@ int main(){
     a2->setCharac("b");
     a2->setWeight(.1);
 
-    cout << (*a1 < *a2) << endl;
     if (*a1 > *a2)
         cout << "Greater than worked." << endl;
     else
@@ -43,5 +42,7 @@ int main(){
     cout << popPrac->getData()->getWeight() << endl;
     cout << popPrac->getData()->getCharac() << endl;
     cout << "Length: " << myarray->get_size() << endl;
+    TreeNode<Datawrapper *> * merged = n1->merge(n2);
+    cout << "Merged weight: " << merged->getData()->getWeight() << endl;
 
 }

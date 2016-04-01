@@ -89,17 +89,18 @@ template <class T>
    TreeNode<T>* TreeNode<T>::merge(TreeNode<T>* b){
     T val1 = getData();
     T val2 = b->getData();
-    TreeNode<T> parent();
+    TreeNode<T> * parent = new TreeNode<T>();
     if (val2 < val1){
-        parent.setLeft(b);
-        parent.setRight(this);
+        parent->setLeft(b);
+        parent->setRight(this);
     } else {
-        parent.setLeft(this);
-        parent.setRight(b);
+        parent->setLeft(this);
+        parent->setRight(b);
     }
     Datawrapper * parentWrap = new Datawrapper();
-    parentWrap->setWeight(val1 + val2);
-    parent.setData(parentWrap);
+    parentWrap->setWeight(*val1 + *val2);
+    parent->setData(parentWrap);
+    return parent;
 }
 /*
 template <>

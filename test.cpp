@@ -18,6 +18,7 @@ int main(){
     TreeNode<Datawrapper *> * n2 = new TreeNode<Datawrapper *>();
     a2->setCharac("b");
     a2->setWeight(.1);
+
     cout << (*a1 < *a2) << endl;
     if (*a1 > *a2)
         cout << "Greater than worked." << endl;
@@ -26,7 +27,8 @@ int main(){
     if (*a2 < *a1)
         cout << "Less than worked." << endl;
     else
-        cout << "Less than didn't work." << endl;*/
+        cout << "Less than didn't work." << endl;
+
     n2->setData(a2);
     cout << n2->getData()->getWeight() << endl;
     cout << n2->getData()->getCharac() << endl;

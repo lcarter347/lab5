@@ -29,12 +29,10 @@ class Datawrapper{
 
 
 bool Datawrapper::operator< (const Datawrapper &dw2){
-    cout << "Made it into less than." << endl;
     return weight < dw2.weight;
 }
 
 bool Datawrapper::operator> (const Datawrapper &dw2){
-    cout << "Made it into greater than." << endl;
     return weight > dw2.weight;
 }
 /*

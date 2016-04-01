@@ -29,6 +29,8 @@ int main(){
     else
         cout << "Less than didn't work." << endl;
 
+    cout << "Testing adding a1 and a2: " << *a1 + *a2 << endl;
+
     n2->setData(a2);
     cout << n2->getData()->getWeight() << endl;
     cout << n2->getData()->getCharac() << endl;

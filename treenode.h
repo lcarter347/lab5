@@ -97,7 +97,9 @@ template <class T>
         parent.setLeft(a);
         parent.setRight(b);
     }
-    parent.setData(val1 + val2);
+    Datawrapper * parentWrap = new Datawrapper();
+    parentWrap->setWeight(val1 + val2);
+    parent.setData(parentWrap);
 }
 /*
 template <>

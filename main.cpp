@@ -20,8 +20,7 @@ int main(){
 	}
 	string line, charNum, charVal;
 	string space; 
-//make array
-
+	TreeNode<Datawrapper*>* ptrArray = new TreeNode<Datawrapper*>()[];
 	while(!myInputFile.eof()){
 		getline(cin, line);
 		if (line.length() > 2){
@@ -47,11 +46,9 @@ int main(){
 		TreeNode<Datawrapper*>* n = new TreeNode<Datawrapper*>();
 		n->setData(*a);
 		
-		TreeNode<Datawrapper*>* ptrArray = new TreeNode<Datawrapper*>()[];
 		
 
 
-//dynamic array of node pointers
 
 
 

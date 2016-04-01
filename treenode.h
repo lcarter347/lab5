@@ -17,7 +17,7 @@ class TreeNode{
         TreeNode();
         TreeNode(T val, TreeNode *ln=NULL, TreeNode *rn=NULL);
         T getData();
-        TreeNode* merge(TreeNode* a, TreeNode* b);
+        TreeNode* merge(TreeNode* b);
         void setData(T val);
         void setLeft(TreeNode *ln);
         void setRight(TreeNode *rn);
@@ -86,15 +86,15 @@ bool TreeNode<T>::isLeaf(){
 }
 
 template <class T>
-   TreeNode<T>* TreeNode<T>::merge(TreeNode<T>* a, TreeNode<T>* b){
-    T val1 = a->getData();
+   TreeNode<T>* TreeNode<T>::merge(TreeNode<T>* b){
+    T val1 = getData();
     T val2 = b->getData();
     TreeNode<T> parent();
     if (val2 < val1){
         parent.setLeft(b);
-        parent.setRight(a);
+        parent.setRight(this);
     } else {
-        parent.setLeft(a);
+        parent.setLeft(this);
         parent.setRight(b);
     }
     Datawrapper * parentWrap = new Datawrapper();

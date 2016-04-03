@@ -1,7 +1,7 @@
 /*Lisa Carter
   Section 1*/
 
-#include<iostream>
+#include <iostream>
 
 #ifndef MY_DA_ARRAY_H_
 #define MY_DA_ARRAY_H_
@@ -16,6 +16,7 @@ class my_da_array{
         int da_push(T);
         T da_pop();
         int da_insert(int, T);
+        int da_remove(int index);
         T get_elem(int);
         int get_size();
         T find_maxmin(bool);
@@ -111,6 +112,33 @@ int my_da_array<T>::da_insert(int pos, T elem){
                     temp[i] = elem;
                 } else {
                     temp[i] = ptr[count];
+                    count ++;
+                }
+            }
+            size = newsize;
+            delete [] ptr;
+            ptr = temp;
+            return 0;
+        } catch(bad_alloc& ba){
+            return -1;
+        } 
+    }
+}
+
+template<class T>    	
+int my_da_array<T>::da_remove(int index){
+    if (index >= size){
+        return -1;
+    } else{
+        try{
+            int newsize = size - 1;
+            T * temp = new T[newsize];
+            int count = 0;
+            for (int i = 0; i < size; i++){
+                if (i == index){
+                    ;
+                } else {
+                    temp[count] = ptr[i];
                     count ++;
                 }
             }

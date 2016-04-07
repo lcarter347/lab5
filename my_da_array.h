@@ -168,7 +168,7 @@ T my_da_array<T>::get_elem(int elem){
     if (size > elem){
         return ptr[elem];
     } else { 
-        return -1;
+        return NULL;
     }
 }
 

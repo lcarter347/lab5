@@ -100,6 +100,6 @@ string Huffman::decode(char * data){
 }
 
 char * Huffman::encode(string input){
-    my_da_array<string> enc;
+    /*my_da_array<string> enc;*/
 
 }

@@ -32,9 +32,8 @@ void Huffman::makeTree(string fname){
     if(!infile.is_open()){
         infile.open(fname.c_str());
     }
-
+    getline(infile, line);
     while(!infile.eof()){
-        getline(cin, line);
         charVal = line[0];
         int len = line.length() - 2;
         charNum = line.substr(2,len);
@@ -49,11 +48,17 @@ void Huffman::makeTree(string fname){
         TreeNode<Datawrapper*>* n = new TreeNode<Datawrapper*>();
         n->setData(a);
         stash.da_push(n);
+        getline(infile,line);
     }
     
     while(stash.get_size() > 1){
         int smallest, secondsmallest;
-        if (stash.get_elem(0)->getData() < stash.get_elem(1)->getData()){
+        cout << " Weight at 0: " << stash.get_elem(0)->getData()->getWeight() << endl;
+        cout << " Charac at 0: " << stash.get_elem(0)->getData()->getCharac() << endl;
+        cout << " Weight at 1: " << stash.get_elem(1)->getData()->getWeight() << endl;
+        cout << " Charac at 1: " << stash.get_elem(1)->getData()->getCharac() << endl;
+        if (stash.get_elem(0)->getData()->getWeight() < stash.get_elem(1)->getData()->getWeight()){
+            cout << "In first swap." << endl;
             smallest = 0;
             secondsmallest = 1;
         }
@@ -62,15 +67,24 @@ void Huffman::makeTree(string fname){
             secondsmallest = 0;
         }
         for (int count = 2; count < stash.get_size(); count ++){
-            if (stash.get_elem(count)->getData() < stash.get_elem(smallest)->getData()){
+            if (stash.get_elem(count)->getData()->getWeight() < stash.get_elem(smallest)->getData()->getWeight()){
                 secondsmallest = smallest;
                 smallest = count;
             }
-            else if (stash.get_elem(count)->getData() < stash.get_elem(secondsmallest)->getData())
+            else if (stash.get_elem(count)->getData()->getWeight() < stash.get_elem(secondsmallest)->getData()->getWeight())
                 secondsmallest = count;
         }
         
-        TreeNode<Datawrapper*> * merged = stash.get_elem(smallest)->merge(stash.get_elem(secondsmallest));
+        TreeNode<Datawrapper*> * merged = stash.get_elem(secondsmallest)->merge(stash.get_elem(smallest));
+
+
+
+        cout << " merged left weight: " << merged->getLeft()->getData()->getWeight() << " merged left charac: " << merged->getLeft()->getData()->getCharac() << endl;
+
+        cout << " merged right weight: " << merged->getRight()->getData()->getWeight() << " merged right charac: " << merged->getRight()->getData()->getCharac() << endl;
+
+
+
         stash.da_remove(smallest);
         if (secondsmallest < smallest)
             stash.da_remove(secondsmallest);
@@ -86,15 +100,23 @@ void Huffman::makeTree(string fname){
 string Huffman::decode(char * data){
     string answer = "";
     int size = strlen(data);
-    for (int count = 0; count < size; count ++){
+    for (int count = 0; count < size +1; count ++){
+       cout << "Current weight: " << current->getData()->getWeight() << endl;
+       cout << "Next instruction: " << data[count] << endl;
        if (current->isLeaf()){
+           cout << "Added letter." << endl;
            answer += current->getData()->getCharac();
+           count --;
            current = root;
        }
-       else if (data[count] == '1')
+       else if (data[count] == '1'){
+           cout << "Moved right." << endl;
            current = current->getRight();
-       else
+       }
+       else{
+           cout << "Moved left." << endl;
            current = current->getLeft();
+       }
     }
     return answer;
 }

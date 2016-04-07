@@ -90,7 +90,7 @@ template <class T>
     T val1 = getData();
     T val2 = b->getData();
     TreeNode<T> * parent = new TreeNode<T>();
-    if (val2 < val1){
+    if (val2->getWeight() < val1->getWeight()){
         parent->setLeft(b);
         parent->setRight(this);
     } else {

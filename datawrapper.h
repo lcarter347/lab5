@@ -9,18 +9,18 @@ using namespace std;
 
 class Datawrapper{
     private:
-        double weight;
+        int weight;
         string charac;
     public:
         Datawrapper();
-        double getWeight();
+        int getWeight();
         string getCharac();
-        void setWeight(double);
+        void setWeight(int);
         void setCharac(string);
 
         bool operator< (const Datawrapper &dw2);
         bool operator> (const Datawrapper &dw2);
-        float operator+ (const Datawrapper &dw2);
+        int operator+ (const Datawrapper &dw2);
         
 };
 
@@ -33,7 +33,7 @@ bool Datawrapper::operator> (const Datawrapper &dw2){
     return weight > dw2.weight;
 }
 
-float Datawrapper::operator+ (const Datawrapper &dw2){
+int Datawrapper::operator+ (const Datawrapper &dw2){
     return weight + dw2.weight;
 }
 
@@ -42,7 +42,7 @@ Datawrapper::Datawrapper(){
         string charac;
 }
 
-double Datawrapper::getWeight(){
+int Datawrapper::getWeight(){
     return weight;
 }
 
@@ -50,7 +50,7 @@ string Datawrapper::getCharac(){
     return charac;
 }
 
-void Datawrapper::setWeight(double w){
+void Datawrapper::setWeight(int w){
     weight = w;
 }
 

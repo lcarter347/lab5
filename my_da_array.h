@@ -15,6 +15,7 @@ class my_da_array{
         void print();
         int da_push(T);
         T da_pop();
+        int set_elem(int index, T elem);
         int da_insert(int, T);
         int da_remove(int index);
         T get_elem(int);
@@ -97,6 +98,16 @@ T my_da_array<T>::da_pop(){
 
     return elem;
 } 
+
+template<class T>    	
+int my_da_array<T>::set_elem(int index, T elem){
+    if (index >= size){
+        return -1;
+    } else {
+        ptr[index] = elem;
+        return 0;
+    }
+}
 
 template<class T>    	
 int my_da_array<T>::da_insert(int pos, T elem){

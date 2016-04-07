@@ -7,7 +7,7 @@
 using namespace std;
 
 int main(){
-    Datawrapper * a1 = new Datawrapper();
+    /*Datawrapper * a1 = new Datawrapper();
     TreeNode<Datawrapper *> * n1 = new TreeNode<Datawrapper *>();
     a1->setCharac("a");
     a1->setWeight(.45);
@@ -49,6 +49,12 @@ int main(){
     
     cout << "Left weight: " << left->getData()->getWeight() << endl;
     cout << "Right weight: " << right->getData()->getWeight() << endl;
+    */
 
+    my_da_array<int> arr;
+    arr.da_push(1);
+    arr.print();
+    arr.set_elem(0, arr.get_elem(0)+1);
+    arr.print();
 
 }

@@ -26,7 +26,8 @@ int main(){
         }
     }
     outfile.close();
-    
+   //read - from file to char *
+   //write - from char * to file 
     streampos size;
     char * memory;
     ifstream infile;

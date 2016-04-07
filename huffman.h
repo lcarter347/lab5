@@ -16,7 +16,7 @@ class Huffman{
 
     public:
         Huffman();
-        void makeTree(ifstream *);
+        void makeTree(string);
         string decode(char * data);
         char * encode(string);
 };
@@ -25,10 +25,14 @@ Huffman::Huffman(){
 
 }
 
-void Huffman::makeTree(ifstream * in){
+void Huffman::makeTree(string fname){
     my_da_array<TreeNode <Datawrapper*> *> stash;
     string charVal, charNum, line;
-    ifstream infile = *in;
+    ifstream infile;
+    if(!infile.is_open()){
+        infile.open(fname.c_str());
+    }
+
     while(!infile.eof()){
         getline(cin, line);
         charVal = line[0];

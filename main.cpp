@@ -25,6 +25,5 @@ int main(){
 
 
 
-	myInputFile.close();
 	return 0;
 }

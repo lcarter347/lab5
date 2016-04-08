@@ -32,7 +32,6 @@ using namespace std;
 template<class T>
 my_da_array<T>::my_da_array(){
     ptr = new T[1];
-    ptr[0] = 0;
     size = 0;
 }
 

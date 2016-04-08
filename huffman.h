@@ -96,6 +96,7 @@ void Huffman::makeTree(string fname){
 }
 
 string Huffman::decode(char * data){
+    current = root;
     string answer = "";
     int size = strlen(data);
     for (int count = 0; count < size +1; count ++){

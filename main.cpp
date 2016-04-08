@@ -31,6 +31,7 @@ int main(){
     cout << h.encode("b") << endl;
     cout << h.encode("c") << endl;
     cout << h.encode("d") << endl;
+    cout << h.encode(" ") << endl;
     cout << h.encode("aabbccddabcd") << endl;
     string test2 = "000001011010111100011011";
     char * test2A = new char[test2.size()+1];
@@ -40,6 +41,7 @@ int main(){
     cout << h.decode(test2A) << endl; 
 
     char * test3 = h.encode("abcabcabc");
+    cout << test3 << endl;
     cout << h.decode(test3) << endl;
 	return 0;
 }

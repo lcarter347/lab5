@@ -4,11 +4,11 @@
 #include <iostream>
 #include <stdio.h>
 #include <string.h>
-
+#include "bin.h"
 using namespace std;
 
 int main(){
-    ofstream outfile;
+   /* ofstream outfile;
     outfile.open("binary.bin", ios::binary | ios::out);
     char bin[] = "0101011";
     cout << "Starting data: " << endl;
@@ -25,10 +25,12 @@ int main(){
             cout << "Error writing to file" << endl;
         }
     }
-    outfile.close();
+    outfile.close();*/
    //read - from file to char *
-   //write - from char * to file 
-    streampos size;
+   //write - from char * to file
+
+    
+   /* streampos size;
     char * memory;
     ifstream infile;
     infile.open("binary.bin", ios::binary | ios::in);
@@ -50,7 +52,20 @@ int main(){
             cout << *(memory + k) << " ";
         }
         cout << endl;
+    }*/
+    
+    char * bin;
+    char b[] = "010010011";
+    bin = b;
+    writeBin(bin,"binary.bin"); 
+
+    char * read = readBin("binary.bin");
+    int len = strlen(read);
+    for (int i = 0; i < len; i++){
+        cout << *(read + i) << " ";
     }
+    
+    cout << endl;
 
     return 0;
 }

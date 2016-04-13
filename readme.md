@@ -1,12 +1,13 @@
 To Do:
 
-- merge function for Node  Node* merge(Node*)
+- Huffman needs to write file with decoding key and number of bits in message
 
-- remove function for da_array
 
-- data wrapper for nodes
+- makeTreeFromFile method
 
-- binary storage
+
+- fix main to call methods 
+
 
 - textfile(s)
 

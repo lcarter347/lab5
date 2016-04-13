@@ -17,7 +17,7 @@ int main(){
     bin = b;
     writeBin(bin,"binary.hzip"); 
 
-    char * read = readBin("binary.hzip");
+    char * read = readBin("binary.hzip", 10);
     int len = strlen(read);
     for (int i = 0; i < len; i++){
         cout << *(read + i) << " ";

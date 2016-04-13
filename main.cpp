@@ -8,6 +8,7 @@
 #include "treenode.h"
 #include "datawrapper.h"
 #include "huffman.h"
+#include "bin.h"
 
 using namespace std;
 

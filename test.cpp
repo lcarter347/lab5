@@ -51,10 +51,11 @@ int main(){
     cout << "Right weight: " << right->getData()->getWeight() << endl;
     */
 
-    my_da_array<int> arr;
+    /*my_da_array<int> arr;
     arr.da_push(1);
     arr.print();
     arr.set_elem(0, arr.get_elem(0)+1);
     arr.print();
+    */
 
 }

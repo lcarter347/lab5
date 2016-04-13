@@ -1,3 +1,5 @@
+/*Lisa Carter, Justin Rice, Hannah Zontine*/
+
 #include <istream>
 #include <fstream>
 #include <ostream>
@@ -13,7 +15,7 @@
 using namespace std;
 
 void writeBin(char * bin, string filename);
-char * readBin(string filename);
+char * readBin(string filename, int length);
 
 
 void writeBin(char * bin, string filename){
@@ -39,7 +41,7 @@ void writeBin(char * bin, string filename){
 }
 
 
-char * readBin(string filename){
+char * readBin(string filename, int length){
     string bits;
     int temp;
     string str;
@@ -48,7 +50,7 @@ char * readBin(string filename){
     stringstream ss;
     infile.open(filename.c_str());
     if (infile.is_open()){   
-        while (true){
+        for (int i = 0; i < length; i++){
             if (infile.fail()){
                 cout << "Error reading from file" << endl;
                 return NULL;

@@ -8,14 +8,17 @@
 #include "treenode.h"
 #include "datawrapper.h"
 #include "huffman.h"
-//#include "bin.h"
+#include "bin.h"
+#include "calcweights.h"
 
 using namespace std;
+
+string compute(string inputFile);
 
 int main(){
     string inputFileName;
     string compressedFile, encodedFile;
-    string task;
+    string task, fileAsString;
     Huffman h;
     cout << "Would you like to encode or decode your file? " << endl;
     getline(cin, task);
@@ -23,7 +26,12 @@ int main(){
     if (task == "encode" || task == "Encode" || task == "E" || task == "e"){
 	    cout << "Please enter the name of an input file: " << endl;
    	    getline(cin, inputFileName);
+	    string outputFileName = inputFileName + ".hzip";
+	    fileAsString = compute(inputFileName);
+	    calcweights(inputFileName);
 	    h.makeTree(inputFileName);
+	    char* answer = h.encode(fileAsString);
+	    writeBin(answer, outputFileName);
 	    break;
     }else{
     	if (task == "decode" || task == "Decode" || task == "D" || task == "d"){
@@ -72,9 +80,25 @@ int main(){
     cout << h.decode(test3) << endl;
 
 
-     //output encoded file should be named: filename.hzip
+     //output encoded file: filename.hzip
      //output compressed file: filename.hcodes
      //print the compression ratio (# of bits in compressed file /  total # in original file)
 
     return 0;
+}
+
+
+string compute(string inputFile){
+	ifstream file;
+	string line, str = "";
+	if(!file.is_open()){
+		file.open(inputFile.c_str());
+	}
+	getline(file,line);
+	while(!file.eof()){
+		str = str + line;
+		getline(file,line);
+	}
+	file.close();
+	return str;
 }

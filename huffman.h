@@ -26,6 +26,7 @@ class Huffman{
         void setMessageLength(int length);
         int getMessageLength();
         void writeTreeToFile(string filename, int length);
+        void makeTreeFromFile(string filename);
 };
 
 Huffman::Huffman(){
@@ -147,6 +148,37 @@ void Huffman::writeTreeToFile(string filename, int length){
    } else {
       cout << "Error writing to code key file" << endl;
    } 
+}
+
+void Huffman::makeTreeFromFile(string filename){
+    fstream infile;
+    infile.open(filename.c_str());
+    if (!infile.is_open()){
+        cout << "Error opening code key file" << endl;
+    } else {
+        string line;
+        getline(infile, line);
+        if (!infile.eof()){
+            stringstream ss(line);
+            int length;
+            if (!(ss >> length)){
+                cout << "Code key file is corrupted" << endl;
+            } else {
+                setMessageLength(length);
+                getline(infile, line);
+                string charVal, path;
+                while(!infile.eof()){
+                    charVal = line[0];
+                    int len = line.length() - 2;
+                    path  = line.substr(2,len);
+                    
+                    // add to tree
+
+                    getline(infile, line);
+                }
+            }
+        }
+    }
 }
 
 void Huffman::setMessageLength(int length){

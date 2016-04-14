@@ -11,6 +11,7 @@
 #include "bin.h"
 #include "calcweights.h"
 
+
 using namespace std;
 
 string compute(string inputFile);
@@ -19,7 +20,7 @@ int main(){
     string inputFileName;
     string compressedFile, encodedFile;
     string task, fileAsString;
-    Huffman h;
+    Huffman* h = new Huffman();
     cout << "Would you like to encode or decode your file? " << endl;
     getline(cin, task);
     while(true){
@@ -29,9 +30,12 @@ int main(){
 	    string outputFileName = inputFileName + ".hzip";
 	    fileAsString = compute(inputFileName);
 	    calcweights(inputFileName);
-	    h.makeTree(inputFileName);
-	    char* answer = h.encode(fileAsString);
+	    string weightsFile = inputFileName + ".w";
+	    h->makeTree(weightsFile);
+	    char* answer = h->encode(fileAsString);
+	    h->setMessageLength(strlen(answer));
 	    writeBin(answer, outputFileName);
+	    h->writeTreeToFile(inputFileName + ".hcodes", h->getMessageLength());
 	    break;
     }else{
     	if (task == "decode" || task == "Decode" || task == "D" || task == "d"){
@@ -40,10 +44,11 @@ int main(){
 	    cout << "Please enter the name of an encoded input file (.hcodes file): " << endl;
 	    getline(cin, encodedFile);
 	    if(compressedFile.find(".hzip") != -1  && encodedFile.find(".hcodes") != -1){
-
-	            //produce a decompressed file
-	    }    
-
+		    h->makeTreeFromFile(encodedFile);
+		    char* value = readBin(compressedFile, h->getMessageLength());
+	            string g = h->decode(value);
+		    cout << g << endl;
+	    }
 	    break;
 	}else{
 		cout << "If you wish to encode your file, enter encode, or e." << endl;
@@ -52,35 +57,7 @@ int main(){
 	}
     }
     }
-    char * test = new char[8];
-    test[0] = '0';
-    test[1] = '0';
-    test[2] = '0';
-    test[3] = '1';
-    test[4] = '1';
-    test[5] = '0';
-    test[6] = '1';
-    test[7] = '1';
-    cout << h.decode(test) << endl;
-    cout << h.encode("a") << endl;
-    cout << h.encode("b") << endl;
-    cout << h.encode("c") << endl;
-    cout << h.encode("d") << endl;
-    cout << h.encode(" ") << endl;
-    cout << h.encode("aabbccddabcd") << endl;
-    string test2 = "000001011010111100011011";
-    char * test2A = new char[test2.size()+1];
-    copy(test2.begin(), test2.end(), test2A);
-    test2A[test2.size()] = '\0';
-    
-    cout << h.decode(test2A) << endl; 
-
-    char * test3 = h.encode("abcabcabc");
-    cout << test3 << endl;
-    cout << h.decode(test3) << endl;
-
-
-     //output encoded file: filename.hzip
+    //output encoded file: filename.hzip
      //output compressed file: filename.hcodes
      //print the compression ratio (# of bits in compressed file /  total # in original file)
 

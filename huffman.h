@@ -151,6 +151,9 @@ void Huffman::writeTreeToFile(string filename, int length){
 }
 
 void Huffman::makeTreeFromFile(string filename){
+    Datawrapper * dw = new Datawrapper();
+    TreeNode<Datawrapper *> * root = new TreeNode<Datawrapper *>();
+    root->setData(dw);
     fstream infile;
     infile.open(filename.c_str());
     if (!infile.is_open()){
@@ -171,8 +174,36 @@ void Huffman::makeTreeFromFile(string filename){
                     charVal = line[0];
                     int len = line.length() - 2;
                     path  = line.substr(2,len);
-                    
-                    // add to tree
+                    key.da_push(charVal);
+                    value.da_push(path);                    
+                    for (int count = 0; count < path.length(); count ++){
+                        string thisChar = path.substr(count, 1);
+                        if (thisChar == "1"){
+                            if (current->getRight()) current = current->getRight();
+                            else{
+                                Datawrapper * newrightDW = new Datawrapper();
+                                TreeNode<Datawrapper *> * newRight = new TreeNode<Datawrapper *>();
+                                newRight->setData(newrightDW);
+                                current->setRight(newRight);
+                                newRight->setParent(current);
+                                current = newRight;
+                            }
+                        }
+                        else{
+                            if (current->getLeft()) current = current->getLeft();
+                            else{
+                                Datawrapper * newleftDW = new Datawrapper();
+                                TreeNode<Datawrapper *> * newLeft = new TreeNode<Datawrapper *>();
+                                newLeft->setData(newleftDW);
+                                current->setLeft(newLeft);
+                                newLeft->setParent(current);
+                                current = newLeft;
+                            }
+                        }
+                        if (count = path.length()-1)
+                            current->getData()->setCharac(charVal);
+
+                    }
 
                     getline(infile, line);
                 }

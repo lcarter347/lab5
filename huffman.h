@@ -138,16 +138,15 @@ char *  Huffman::encode(string input){
 
 void Huffman::writeTreeToFile(string filename, int length){
    ofstream outfile;
-   cout << filename << endl;
    if(!outfile.is_open()){
-	   outfile.open(filename.c_str());
+    	outfile.open(filename.c_str());
    }
    if(outfile.is_open()){
-       outfile << length << endl;
-       for (int i = 0; i < key.get_size(); i++){
-           outfile << key.get_elem(i) << " " << value.get_elem(i) << endl;
-       }
-       outfile.close();
+       	outfile << length << endl;
+       	for (int i = 0; i < key.get_size(); i++){
+           	outfile << key.get_elem(i) << " " << value.get_elem(i) << endl;
+       	}
+       	outfile.close();
    } else {
       cout << "Error writing to code key file" << endl;
    } 

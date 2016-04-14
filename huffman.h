@@ -137,8 +137,12 @@ char *  Huffman::encode(string input){
 }
 
 void Huffman::writeTreeToFile(string filename, int length){
-   fstream outfile;
-   outfile.open(filename.c_str());
+   ofstream outfile;
+   cout << filename << endl;
+   if(!outfile.is_open()){
+	   outfile.open(filename.c_str());
+           cout << "HI JUSTIN" << endl;
+   }
    if(outfile.is_open()){
        outfile << length << endl;
        for (int i = 0; i < key.get_size(); i++){

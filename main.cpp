@@ -35,7 +35,8 @@ int main(){
 	    char* answer = h->encode(fileAsString);
 	    h->setMessageLength(strlen(answer));
 	    writeBin(answer, outputFileName);
-	    h->writeTreeToFile(inputFileName + ".hcodes", h->getMessageLength());
+	    string str = inputFileName + ".hcodes";
+	    h->writeTreeToFile(str, h->getMessageLength());
 	    break;
     }else{
     	if (task == "decode" || task == "Decode" || task == "D" || task == "d"){

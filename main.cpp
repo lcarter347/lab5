@@ -1,6 +1,6 @@
 // Justin Rice, Lisa Carter, Hannah Zontine
 // Lab 5
-// Sources: Stack Overflow, cplusplus.com, our brains, prayers
+// Sources: Stack Overflow, cplusplus.com, Lisa's brain, prayers, blood, sweat, tears
 
 #include <iostream>
 #include <fstream>

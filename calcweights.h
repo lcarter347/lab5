@@ -54,7 +54,8 @@ int calcweights(string filename){
         }
         
         ofstream outfile;
-        outfile.open("testweights.txt");
+        string outputFile = filename+".w";
+        outfile.open(outputFile.c_str());
         if (!outfile.is_open()){
             cout << "Unable to open output file" << endl;
             return -1;

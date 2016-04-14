@@ -20,14 +20,22 @@ int main(){
     string compressedFile, encodedFile;
     string task, fileAsString;
     Huffman* h = new Huffman();
-    cout << "Would you like to encode or decode your file? " << endl;
+   while(true){
+    cout << "Would you like to encode or decode your file? (to quit: q or quit)" << endl;
     getline(cin, task);
+    if (task == "quit" || task == "q"){
+	break; 
+    }
     while(true){
 	    if (task == "encode" || task == "Encode" || task == "E" || task == "e"){
 		    cout << "Please enter the name of an input file: " << endl;
 		    getline(cin, inputFileName);
 		    string outputFileName = inputFileName + ".hzip";
 		    fileAsString = compute(inputFileName);
+		    if(fileAsString == ""){
+			cout << "File not found." << endl;
+			break;
+		    }
 		    calcweights(inputFileName);
 		    string weightsFile = inputFileName + ".w";
 		    h->makeTree(weightsFile);
@@ -64,6 +72,13 @@ int main(){
 				output << g;
 			 	output.close();
 			    }
+		    }else{
+			if(compressedFile.find(".hzip") == -1){
+				cout << "The compressed file you entered could not be found (.hzip file)" << endl;
+			}
+			if(encodedFile.find(".hcodes") == -1){
+				cout << "The encoded file you entered could not be found (.hcodes file)" << endl;
+			}
 		    }
 		    break;
 		}else{
@@ -73,6 +88,7 @@ int main(){
 		}
 	    }
     }
+   }
     return 0;
 }
 
@@ -83,10 +99,12 @@ string compute(string inputFile){
 	if(!file.is_open()){
 		file.open(inputFile.c_str());
 	}
-	getline(file,line);
-	while(!file.eof()){
-		str = str + line;
+	if(file.is_open()){
 		getline(file,line);
+		while(!file.eof()){
+			str = str + line;
+			getline(file,line);
+		}
 	}
 	file.close();
 	return str;

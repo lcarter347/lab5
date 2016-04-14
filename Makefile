@@ -3,7 +3,7 @@
 all: huffman
 
 huffman: main.cpp StanfordCPPLib/bitstream.cpp StanfordCPPLib/strlib.cpp StanfordCPPLib/error.cpp
-	g++ main.cpp StanfordCPPLib/bitstream.cpp  StanfordCPPLib/strlib.cpp StanfordCPPLib/error.cpp -o huffman
+	g++ -g main.cpp StanfordCPPLib/bitstream.cpp  StanfordCPPLib/strlib.cpp StanfordCPPLib/error.cpp -o huffman
 
 clean: 
 	$(RM) huffman

@@ -31,6 +31,8 @@ class TreeNode{
         bool isLeaf();
         void setPath(string);
         string getPath();
+        bool hasLeft();
+        bool hasRight();
         
 };
 
@@ -140,5 +142,16 @@ template <class T>
     return parent;
 }
 
+template <class T>
+bool TreeNode<T>::hasLeft(){
+    if (left == NULL) return false;
+    return true;
+}
+
+template <class T>
+bool TreeNode<T>::hasRight(){
+    if (right == NULL) return false;
+    return true;
+}
 
 #endif

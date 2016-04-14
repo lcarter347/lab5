@@ -141,7 +141,6 @@ void Huffman::writeTreeToFile(string filename, int length){
    cout << filename << endl;
    if(!outfile.is_open()){
 	   outfile.open(filename.c_str());
-           cout << "HI JUSTIN" << endl;
    }
    if(outfile.is_open()){
        outfile << length << endl;
@@ -156,8 +155,10 @@ void Huffman::writeTreeToFile(string filename, int length){
 
 void Huffman::makeTreeFromFile(string filename){
     Datawrapper * dw = new Datawrapper();
-    TreeNode<Datawrapper *> * root = new TreeNode<Datawrapper *>();
-    root->setData(dw);
+    TreeNode<Datawrapper *> * newRt = new TreeNode<Datawrapper *>();
+    newRt->setData(dw);
+    root = newRt;
+    current = root;
     fstream infile;
     infile.open(filename.c_str());
     if (!infile.is_open()){
@@ -179,11 +180,13 @@ void Huffman::makeTreeFromFile(string filename){
                     int len = line.length() - 2;
                     path  = line.substr(2,len);
                     key.da_push(charVal);
-                    value.da_push(path);                    
+                    value.da_push(path);                   
                     for (int count = 0; count < path.length(); count ++){
                         string thisChar = path.substr(count, 1);
                         if (thisChar == "1"){
-                            if (current->getRight()) current = current->getRight();
+                            if (current->hasRight()){
+                                current = current->getRight();
+                            }
                             else{
                                 Datawrapper * newrightDW = new Datawrapper();
                                 TreeNode<Datawrapper *> * newRight = new TreeNode<Datawrapper *>();
@@ -194,7 +197,9 @@ void Huffman::makeTreeFromFile(string filename){
                             }
                         }
                         else{
-                            if (current->getLeft()) current = current->getLeft();
+                            if (current->hasLeft()) {
+                                current = current->getLeft();
+                            }
                             else{
                                 Datawrapper * newleftDW = new Datawrapper();
                                 TreeNode<Datawrapper *> * newLeft = new TreeNode<Datawrapper *>();
@@ -204,9 +209,10 @@ void Huffman::makeTreeFromFile(string filename){
                                 current = newLeft;
                             }
                         }
-                        if (count = path.length()-1)
-                            current->getData()->setCharac(charVal);
-
+                        if (count == path.length()-1){
+                            current->getData()->setCharac(charVal);     
+                            current = root;
+                        }
                     }
 
                     getline(infile, line);

@@ -1,6 +1,6 @@
 // Justin Rice, Lisa Carter, Hannah Zontine
 // Lab 5
-// Sources: Stack Overflow, cplusplus.com
+// Sources: Stack Overflow, cplusplus.com, our brains, prayers
 
 #include <iostream>
 #include <fstream>
@@ -10,7 +10,6 @@
 #include "huffman.h"
 #include "bin.h"
 #include "calcweights.h"
-
 
 using namespace std;
 
@@ -51,7 +50,20 @@ int main(){
 			    h->makeTreeFromFile(encodedFile);
 			    char* value = readBin(compressedFile, h->getMessageLength());
 			    string g = h->decode(value);
-			    cout << g << endl;
+			    ofstream output;
+			    string oldFile = compressedFile;
+			    string zipped = ".hzip";
+			    int num = compressedFile.find(zipped);
+			    oldFile = oldFile.erase(num,zipped.length());
+			    if(!output.is_open()){
+				output.open(oldFile.c_str());
+			    }
+		   	    if(!output.is_open()){
+				cout << "Error: file is not opened!!" << endl;
+			    }else{
+				output << g;
+			 	output.close();
+			    }
 		    }
 		    break;
 		}else{
